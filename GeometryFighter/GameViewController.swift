@@ -32,6 +32,7 @@ class GameViewController: UIViewController
     
     func setupView()
     {
+        //this is a quick test 
         scnView = self.view as! SCNView
     }
 }
