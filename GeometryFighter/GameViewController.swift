@@ -18,6 +18,8 @@ class GameViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        setupView()
+        setupScene()
     }
     
     override var shouldAutorotate: Bool
@@ -33,5 +35,11 @@ class GameViewController: UIViewController
     func setupView()
     {
         scnView = self.view as! SCNView
+    }
+    
+    func setupScene()
+    {
+        scnScene = SCNScene()
+        scnView.scene = scnScene
     }
 }
