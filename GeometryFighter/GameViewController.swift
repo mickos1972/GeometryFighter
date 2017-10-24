@@ -66,6 +66,20 @@ class GameViewController: UIViewController
         
         switch ShapeType.random()
         {
+            case ShapeType.sphere:
+                geometry = SCNSphere(radius: 1.0)
+            case ShapeType.pyramid:
+                geometry = SCNPyramid(width: 1.5, height: 1.5, length: 1.5)
+            case ShapeType.torus:
+                geometry = SCNTorus(ringRadius: 1.5, pipeRadius: 2.0)
+            case ShapeType.capsule:
+                geometry = SCNCapsule(capRadius: 1.0, height: 1.0)
+            case ShapeType.cylinder:
+                geometry = SCNCylinder(radius: 1.0, height: 1.0)
+            case ShapeType.cone:
+                geometry = SCNCone(topRadius: 1.0, bottomRadius: 1.5, height: 1.5)
+            case ShapeType.tube:
+                geometry = SCNTube(innerRadius: 0.5, outerRadius: 1.5, height: 1.5)
             default: geometry = SCNBox(width: 1.0, height: 1.0, length: 1.0, chamferRadius: 0.0)
         }
         
