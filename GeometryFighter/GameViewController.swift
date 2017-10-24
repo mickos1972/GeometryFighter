@@ -14,12 +14,14 @@ class GameViewController: UIViewController
 {
     var scnView : SCNView!
     var scnScene : SCNScene!
+    var cameraNode : SCNNode!
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         setupView()
         setupScene()
+        setupCamera()
     }
     
     override var shouldAutorotate: Bool
@@ -43,5 +45,13 @@ class GameViewController: UIViewController
         scnView.scene = scnScene
         
         scnScene.background.contents = "GeometryFighter.scnassets/Textures/Background_Diffuse.jpg"
+    }
+    
+    func setupCamera()
+    {
+        cameraNode = SCNNode()
+        cameraNode.camera = SCNCamera()
+        cameraNode.position = SCNVector3(x: 0, y: 0, z: 10)
+        scnScene.rootNode.addChildNode(cameraNode)
     }
 }
