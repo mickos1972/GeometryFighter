@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D02FC30C1F9F99BC00BDECA0 /* GeometryFighter.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = D02FC30B1F9F99BC00BDECA0 /* GeometryFighter.scnassets */; };
+		D02FC30E1F9FA29300BDECA0 /* ShapeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02FC30D1F9FA29300BDECA0 /* ShapeType.swift */; };
 		D085499E1F9B8F2600D69203 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D085499D1F9B8F2600D69203 /* AppDelegate.swift */; };
 		D08549A21F9B8F2600D69203 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08549A11F9B8F2600D69203 /* GameViewController.swift */; };
 		D08549A51F9B8F2600D69203 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D08549A31F9B8F2600D69203 /* Main.storyboard */; };
@@ -17,6 +18,7 @@
 
 /* Begin PBXFileReference section */
 		D02FC30B1F9F99BC00BDECA0 /* GeometryFighter.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = GeometryFighter.scnassets; sourceTree = "<group>"; };
+		D02FC30D1F9FA29300BDECA0 /* ShapeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeType.swift; sourceTree = "<group>"; };
 		D085499A1F9B8F2600D69203 /* GeometryFighter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GeometryFighter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D085499D1F9B8F2600D69203 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D08549A11F9B8F2600D69203 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 			children = (
 				D02FC30B1F9F99BC00BDECA0 /* GeometryFighter.scnassets */,
 				D085499D1F9B8F2600D69203 /* AppDelegate.swift */,
+				D02FC30D1F9FA29300BDECA0 /* ShapeType.swift */,
 				D08549A11F9B8F2600D69203 /* GameViewController.swift */,
 				D08549A31F9B8F2600D69203 /* Main.storyboard */,
 				D08549A61F9B8F2600D69203 /* Assets.xcassets */,
@@ -141,6 +144,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D08549A21F9B8F2600D69203 /* GameViewController.swift in Sources */,
+				D02FC30E1F9FA29300BDECA0 /* ShapeType.swift in Sources */,
 				D085499E1F9B8F2600D69203 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
