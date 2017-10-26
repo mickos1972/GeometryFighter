@@ -22,7 +22,6 @@ class GameViewController: UIViewController
         setupView()
         setupScene()
         setupCamera()
-        spawnShape()
     }
     
     override var shouldAutorotate: Bool
@@ -42,6 +41,7 @@ class GameViewController: UIViewController
         scnView.showsStatistics = true
         scnView.allowsCameraControl = true
         scnView.autoenablesDefaultLighting = true
+        scnView.delegate = self
     }
     
     func setupScene()
@@ -77,7 +77,7 @@ class GameViewController: UIViewController
             case ShapeType.cylinder:
                 geometry = SCNCylinder(radius: 1.0, height: 1.0)
             case ShapeType.cone:
-                geometry = SCNCone(topRadius: 1.0, bottomRadius: 1.5, height: 1.5)
+                geometry = SCNCone(topRadius: 0.0, bottomRadius: 1.5, height: 1.5)
             case ShapeType.tube:
                 geometry = SCNTube(innerRadius: 0.5, outerRadius: 1.5, height: 1.5)
             default: geometry = SCNBox(width: 1.0, height: 1.0, length: 1.0, chamferRadius: 0.0)
@@ -97,3 +97,13 @@ class GameViewController: UIViewController
         scnScene.rootNode.addChildNode(geometryNode)
     }
 }
+
+extension GameViewController: SCNSceneRendererDelegate
+{
+    func renderer(_ renderer: SCNSceneRenderer,
+                  updateAtTime time: TimeInterval)
+    {
+        spawnShape()
+    }
+}
+
