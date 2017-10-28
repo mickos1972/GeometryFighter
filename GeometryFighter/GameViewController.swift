@@ -113,8 +113,7 @@ class GameViewController: UIViewController
 
 extension GameViewController: SCNSceneRendererDelegate
 {
-    func renderer(_ renderer: SCNSceneRenderer,
-                  updateAtTime time: TimeInterval)
+    func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval)
     {
         if time > spawnTime
         {
