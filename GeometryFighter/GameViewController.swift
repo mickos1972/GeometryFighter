@@ -73,21 +73,27 @@ class GameViewController: UIViewController
             case ShapeType.pyramid:
                 geometry = SCNPyramid(width: 1.5, height: 1.5, length: 1.5)
             case ShapeType.torus:
-                geometry = SCNTorus(ringRadius: 1.5, pipeRadius: 2.0)
+                geometry = SCNTorus(ringRadius: 1.0, pipeRadius: 0.5)
             case ShapeType.capsule:
                 geometry = SCNCapsule(capRadius: 1.0, height: 1.0)
             case ShapeType.cylinder:
-                geometry = SCNCylinder(radius: 1.0, height: 1.0)
+                geometry = SCNCylinder(radius: 0.7, height: 0.9)
             case ShapeType.cone:
-                geometry = SCNCone(topRadius: 0.0, bottomRadius: 1.5, height: 1.5)
+                geometry = SCNCone(topRadius: 0.0, bottomRadius: 1.5, height: 1.0)
             case ShapeType.tube:
-                geometry = SCNTube(innerRadius: 0.5, outerRadius: 1.5, height: 1.5)
+                geometry = SCNTube(innerRadius: 0.5, outerRadius: 1.0, height: 1.0)
             default: geometry = SCNBox(width: 1.0, height: 1.0, length: 1.0, chamferRadius: 0.0)
         }
         
         let geometryNode = SCNNode(geometry: geometry)
-        geometry.materials.first?.diffuse.contents = UIColor.random()
+        
+        let color = UIColor.random()
+        geometry.materials.first?.diffuse.contents = color
+        
         geometryNode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+        
+        let trailEmitter = createTrail(color: color, geometry: geometry)
+        geometryNode.addParticleSystem(trailEmitter)
         
         let randomX = Float.random(min: -2, max: 2)
         let randomY = Float.random(min: 10, max: 18)
@@ -108,6 +114,14 @@ class GameViewController: UIViewController
                 node.removeFromParentNode()
             }
         }
+    }
+    
+    func createTrail(color: UIColor, geometry: SCNGeometry) -> SCNParticleSystem
+    {
+        let trail = SCNParticleSystem(named: "Trail.scnp", inDirectory: nil)!
+        trail.particleColor = color
+        trail.emitterShape = geometry
+        return trail
     }
 }
 
