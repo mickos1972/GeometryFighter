@@ -16,6 +16,7 @@ class GameViewController: UIViewController
     var scnScene : SCNScene!
     var cameraNode : SCNNode!
     var spawnTime : TimeInterval = 0
+    var game = GameHelper.sharedInstance
     
     override func viewDidLoad()
     {
@@ -23,6 +24,7 @@ class GameViewController: UIViewController
         setupView()
         setupScene()
         setupCamera()
+        setupHUD()
     }
     
     override var shouldAutorotate: Bool
@@ -123,6 +125,12 @@ class GameViewController: UIViewController
         trail.emitterShape = geometry
         return trail
     }
+    
+    func setupHUD()
+    {
+        game.hudNode.position = SCNVector3(x: 0.0, y: 10.0, z: 0.0)
+        scnScene.rootNode.addChildNode(game.hudNode)
+    }
 }
 
 extension GameViewController: SCNSceneRendererDelegate
@@ -133,6 +141,7 @@ extension GameViewController: SCNSceneRendererDelegate
         {
             spawnShape()
             spawnTime = time + TimeInterval(Float.random(min: 0.2, max: 1.5))
+            game.updateHUD()
         }
         cleanScene()
     }
