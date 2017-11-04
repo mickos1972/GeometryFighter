@@ -142,16 +142,33 @@ class GameViewController: UIViewController
         scnScene.rootNode.addChildNode(game.hudNode)
     }
     
+    func createExplosion(geometry: SCNGeometry, position: SCNVector3, rotation: SCNVector4)
+    {
+        let explosion = SCNParticleSystem(named: "Explode.scnp", inDirectory:nil)!
+        explosion.emitterShape = geometry
+        explosion.birthLocation = .surface
+        let rotationMatrix = SCNMatrix4MakeRotation(rotation.w, rotation.x, rotation.y, rotation.z)
+        let translationMatrix = SCNMatrix4MakeTranslation(position.x, position.y, position.z)
+        let transformMatrix = SCNMatrix4Mult(rotationMatrix, translationMatrix)
+        scnScene.addParticleSystem(explosion, transform: transformMatrix)
+    }
+    
     func handleTouchFor(node : SCNNode)
     {
         if node.name == "GOOD"
         {
             game.score += 1
+            createExplosion(geometry: node.geometry!,
+                            position: node.presentation.position,
+                            rotation: node.presentation.rotation)
             node.removeFromParentNode()
         }
         else if node.name == "BAD"
         {
             game.lives -= 1
+            createExplosion(geometry: node.geometry!,
+                            position: node.presentation.position,
+                            rotation: node.presentation.rotation)
             node.removeFromParentNode()
         }
     }
