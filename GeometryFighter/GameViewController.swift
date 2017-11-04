@@ -42,7 +42,7 @@ class GameViewController: UIViewController
         scnView = self.view as! SCNView
         
         scnView.showsStatistics = true
-        scnView.allowsCameraControl = true
+        scnView.allowsCameraControl = false
         scnView.autoenablesDefaultLighting = true
         scnView.delegate = self
         scnView.isPlaying = true
@@ -97,6 +97,16 @@ class GameViewController: UIViewController
         let trailEmitter = createTrail(color: color, geometry: geometry)
         geometryNode.addParticleSystem(trailEmitter)
         
+        if color == UIColor.black
+        {
+            geometryNode.name = "BAD"
+        }
+        else
+        {
+            geometryNode.name = "GOOD"
+        }
+        
+        
         let randomX = Float.random(min: -2, max: 2)
         let randomY = Float.random(min: 10, max: 18)
         
@@ -130,6 +140,32 @@ class GameViewController: UIViewController
     {
         game.hudNode.position = SCNVector3(x: 0.0, y: 10.0, z: 0.0)
         scnScene.rootNode.addChildNode(game.hudNode)
+    }
+    
+    func handleTouchFor(node : SCNNode)
+    {
+        if node.name == "GOOD"
+        {
+            game.score += 1
+            node.removeFromParentNode()
+        }
+        else if node.name == "BAD"
+        {
+            game.lives -= 1
+            node.removeFromParentNode()
+        }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
+    {
+        let touch = touches.first!
+        let location = touch.location(in: scnView)
+        let hitResults = scnView.hitTest(location, options: nil)
+        
+        if let result = hitResults.first
+        {
+            handleTouchFor(node: result.node)
+        }
     }
 }
 
